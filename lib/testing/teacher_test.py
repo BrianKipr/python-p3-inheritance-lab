@@ -1,27 +1,22 @@
-#!/usr/bin/env python3
-from lib.teacher import teacher
-# from teacher import Teacher
 from user import User
 
+import random
 
-my_teacher = Teacher("My", "Teacher")
+knowledge = [
+    "str is a data type in Python",
+    "programming is hard, but it's worth it",
+    "JavaScript async web request",
+    "Python function call definition",
+    "object-oriented teacher instance",
+    "programming computers hacking learning terminal",
+    "pipenv install pipenv shell",
+    "pytest -x flag to fail fast",
+]
 
-class TestTeacher:
-    '''Class "Teacher" in teacher.py'''
+class Teacher(User):
+    def _init_(self, first_name, last_name):
+        super()._init_(first_name, last_name)
+        self.knowledge = knowledge
 
-    def test_is_subclass(self):
-        '''is a subclass of "User".'''
-        assert(User in Teacher.__bases__)
-
-    def test_initializes_with_names(self):
-        '''initializes with first and last name.'''
-        assert((my_teacher.first_name, my_teacher.last_name) == ("My", "Teacher"))
-
-    def test_has_attribute_knowledge(self):
-        '''has an attribute called "knowledge", a list with len > 0.'''
-        assert(isinstance(my_teacher.knowledge, list) and len(my_teacher.knowledge) > 0)
-
-    def test_can_teach(self):
-        '''teaches from list of knowledge.'''
-        my_teacher = Teacher("My", "Teacher")
-        assert(my_teacher.teach() in my_teacher.knowledge)
+    def teach(self):
+        return random.choice(self.knowledge)
